@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metode Pembayaran</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="payment.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+  <link rel="manifest" href="../assets/site.webmanifest">
+  <style>
+    body {
+        font-family: 'Nunito', sans-serif;
+    }
+</style>
+</head>
+<body>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <nav class="navbar fixed w-full z-50 px-8 py-0 md:px-20 bg-[#FCFBF8] shadow-md">
+       
+            <div class="container mx-auto flex justify-between items-center  ">
+          <!-- Logo -->
+            <div class="flex items-center">
+                    <a href="#" class="text-[#6d6d6d] font-bold flex items-center">
+                    <img src="../src/6.png"  style="width: 180px; height:auto;" />
+            </a>
+             </div> 
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="status/index.html" class="text-[#262626] font-bold hover:text-yellow-400 transition">Status</a>
+                        <button class="text-[#262626] font-bold hover:text-yellow-400 transition">
+                            <i class="fas fa-shopping-cart text-xl "></i>
+                            <!-- <span
+                                class="absolute -top-2 -right-2 bg-yellow-500 text-xs text-[#6d6d6d] rounded-full h-5 w-5 flex items-center justify-center">3</span> -->
+                        </button>
+                    <div class="relative">    
+                <div>
+    <!-- Sign In / Greeting Area -->
+      </div>
+        <div class=" text-black font-semibold ">
+       <span id="userGreeting" style="display:none">
+         Hai, <span id="userNameDisplay"></span> 
+      </span>
+    
+    <!-- Tombol Sign In / Log Out -->
+    <a
+      id="signInBtn"
+      href="signin.html"
+      class="bg-[#FEE601] text-[#262626] font-bold py-2 px-6 rounded-full transition hover:bg-yellow-400 cursor-pointer ml-4"
+    >
+      Sign In
+    </a>
+      </div>
+        <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+              <button class="text-white text-2xl focus:outline-none" id="mobile-menu-button">
+                  <i class="fas fa-bars"></i>
+              </button>
+          <div class="relative ml-4">
+                <button class="text-white">
+                  <i class="fas fa-shopping-cart text-xl"></i>
+                     </button>
+                </div>
+            </div>
+        </nav> 
+    </div>
+
+    <div class="bg-[#FCFBF8] text-[#6d6d6d] min-h-screen flex items-center justify-center">
+        <section class="max-w-[900px] mx-auto px-8 pt-20">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-700 mb-8">
+                Metode Pembayaran:
+            </h1>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+                <!-- Payment HacktivPay -->
+                <label for="Payment1" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment1" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/hacktivpay.png" alt="HacktivPay">
+                    </div>
+                 </label>
+    
+                <!-- Payment Mistercard -->
+                <label for="Payment2" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment2" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/makantar-1.png" alt="mistercard">
+                    </div>
+                </label>
+    
+                <!-- Payment IntanBank -->
+                <label for="Payment3" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment3" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/IntanBank.png" alt="IntanBank">
+                    </div>
+                 </label>
+    
+                <!-- Payment Danamen -->
+                <label for="Payment4" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment4" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/Danamen.png" alt="Danamen">
+                    </div>
+                 </label>
+    
+                <!-- Payment CIMB -->
+                <label for="Payment5" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment5" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/CIMB.png" alt="CIMBerut">
+                    </div>
+                 </label>
+    
+                <!-- Payment Absenmart -->
+                <label for="Payment6" class="relative w-full cursor-pointer">
+                    <input class="peer hidden" type="radio" id="Payment6" name="payment">
+                    <div class="payment-content">
+                        <img class="payment-image" src="../assets/payment material/Absenmart.png" alt="Absenmart">
+                    </div>
+                 </label>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Checkout Summary -->
+    <div class="md:flex-row left-0 right-0 bg-white shadow-lg items-center border-t py-4">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <div>
+                <p class="text-sm text-gray-500">Jumlah Item</p>
+                <p id="total-price" class="font-bold text-lg">Rp 0</p>
+            </div>
+            <a href="#" id="checkout-btn" disabled
+                class="bg-black text-white font-bold px-6 py-2 rounded hover:bg-yellow-600 transition opacity-90 cursor-not-allowed">
+                <form action="sukses.html" method="get" class="space-y-4">
+                    <!-- pilihan metode -->
+                    <button class="btn-primary w-full">Bayar Sekarang</button>
+                </form>
+            </a>
+        </div>
+    </div>
+
+    <footer class="p-5 bg-black">
+        <div class="grid md:grid-cols-2 md:gap-20">
+            <div class="p-5 grid">
+                <div>
+                    <img width="200" height="100" src="../assets/logo/logo_horizontal.png" alt="makantar">
+                    <p class="px-2 py-4 text-justify text-white">makantar adalah platform web sederhana untuk titip makanan ke temen kantor yang sedang keluar membeli makan siang. Konsepnya fun, santai, dan cocok untuk komunitas kerja yang sibuk tapi tetap ingin makan siang bareng — walau kadang males turun, males nyebrang, atau lagi ngejar deadline.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-1 px-5 py-20 gap-10">
+                <!-- footer nav (home, about, testi, dll) -->
+                <div class="grid md:grid-cols-2 md:gap-0 gap-10">
+                    <div>
+                        <div class="text-yellow-300">
+                            <span>Contact Us</span>
+                        </div>
+                        <div class="mt-4 text-white">
+                            <p>+62 812 345 678</p>
+                            <p>halo@makantar.id</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="text-yellow-300">
+                            <span>Location</span>
+                        </div>
+                        <div class="mt-4 text-white">
+                            <p>15345, Tangerang</p>
+                            <p>South Tower, GOP 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center px-6 md:px-2 py-4 justify-center text-white">
+            <p>© 2025 makantar — Copyright All Rights reserved</p>
+        </div>
+    </footer>
+    <script src="klik.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.payment-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;           /* 16px  */
+    background: #fff;
+    border-radius: 0.5rem;   /* 8px   */
+    box-shadow: 0 1px 4px rgb(0 0 0 / .1);
+    transition: box-shadow .2s;
+  }
+  
+  .payment-content:hover {
+    box-shadow: 0 4px 8px rgb(0 0 0 / .15);
+  }
+  
+  /* gambar agar selalu muat */
+  .payment-image {
+    width: 100px;
+    height: auto;
+  }
+
+  

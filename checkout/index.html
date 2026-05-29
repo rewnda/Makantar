@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAKANTAR - Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="../status/status.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+  <link rel="manifest" href="../assets/site.webmanifest">
+</head>
+<body onload="updateCart()" class="bg-[#FCFBF8]">
+  <!-- Navbar -->
+  <nav class="navbar fixed w-full z-50 px-8 py-0 md:px-20 bg-[#FCFBF8] shadow-md">
+    <div class="container mx-auto flex justify-between items-center  ">
+      <!-- Logo -->
+      <div class="flex items-center w-full">
+        <a href="/" class="text-[#6d6d6d] font-bold flex items-center">
+            <img src="../src/6.png" style="width: 180px; height:auto;" />
+        </a>
+      </div>
+
+      <div id='searchForm'
+        class="relative hidden md:flex justify-between w-full p-3 rounded-md border border-gray-500/75">
+        <input type="text" name="search" id="search" class="w-full focus:outline-0"
+          placeholder="Ketik nama menu" autocomplete="off">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="size-6 text-gray-500">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+        <ul id="searchDropdown"
+          class="absolute top-full left-0 mt-2 bg-white border border-gray-300 w-full rounded-md shadow-md z-50 hidden">
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Tomyum Pedas</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Seafood</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Kangkung</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Bakso Urat</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Kari Jepang</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Udon Tempura</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Indomie Goreng Spesial</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Tek-Tek</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Ayam Sambal Ijo</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Telur Dadar Crispy</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Goreng Kambing</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Rendang</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Kuning Komplit</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Ayam Teriyaki</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Omurice</li>
+          <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Liwet Sunda</li>
+        </ul>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center w-full justify-end gap-10">
+        <a href="status/index.html"
+            class="text-[#262626] font-bold hover:text-yellow-400 transition hidden">Status</a>
+        <button class="text-[#262626] font-bold hover:text-yellow-400 transition hidden">
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <!-- <span
+                    class="absolute -top-2 -right-2 bg-yellow-500 text-xs text-[#6d6d6d] rounded-full h-5 w-5 flex items-center justify-center">3</span> -->
+        </button>
+        <div class="relative">
+          <div>
+              <!-- Sign In / Greeting Area -->
+          </div>
+          <div class=" text-black font-semibold">
+              <span id="userGreeting" style="display:none">
+                  Hai, <span id="userNameDisplay"></span>
+              </span>
+
+              <!-- Tombol Sign In / Log Out -->
+              <a id="signInBtn" href="/signin.html"
+                  class="bg-[#FEE601] text-[#262626] font-bold py-2 px-6 rounded-full transition hover:bg-yellow-400 cursor-pointer ml-4">
+                  Sign In
+              </a>
+          </div>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+              <button class="text-white text-2xl focus:outline-none" id="mobile-menu-button">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <div class="relative ml-4">
+                  <button class="text-white">
+                      <i class="fas fa-shopping-cart text-xl"></i>
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="w-auto px-32 py-20">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="p-12">
+    <ol class="flex items-center gap-1 text-sm text-gray-700">
+    <li>
+      <a href="#" class="block transition-colors hover:text-gray-900"> Homepage </a>
+    </li>
+
+    <li class="rtl:rotate-180">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-4"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </li>
+
+    <li>
+      <a href="#" class="block transition-colors hover:text-gray-900"> Resto A </a>
+    </li>
+
+    <li class="rtl:rotate-180">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-4"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </li>
+
+    <li>
+      <a href="#" class="block transition-colors hover:text to-blue-500"> Checkout </a>
+    </li>
+    </ol>
+    </nav>
+    
+    <!--Jenis Pembelian-->
+    <div class="bg-white w-auto h-auto p-12 rounded-2xl drop-shadow-2xl mb-16">
+      <div class="w-auto h-auto mb-16">
+        <h2 class="font-[Nunito Sans] text-3xl font-bold">Jenis Pembelian</h2>
+      </div>
+      <div class="flex">
+        <button id="pilihButton" onclick="pilihgd()" class="bg-[#FEE601] rounded-xl p-12 flex-auto mr-16 cursor-pointer">
+          <div class="flex items-center w-full justify-center">
+            <span class="material-symbols-outlined mr-2">
+              directions_walk
+            </span>
+            <p class="font-[Nunito Sans] font-semibold text-base w-fit">Diantar Teman</p>
+          </div>
+        </button>
+        <button id="ambilButton" onclick="ambilgd()" class="bg-[#FFFACC] rounded-xl border border-[#FEE601] p-12 flex-auto hover:border-2 hover:border-black hover:bg-[#FEE601] hover:drop-shadow-xl cursor-pointer">
+          <div class="flex items-center w-full justify-center">
+            <span class="material-symbols-outlined mr-2">
+              shopping_bag
+            </span>
+            <p class="font-[Nunito Sans] font-semibold text-base">Ambil Sendiri</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!--Pilih Gedung-->
+    <div id="pilihgd" class="bg-white w-auto h-auto p-12 rounded-2xl drop-shadow-2xl mb-16">
+      <div class="w-auto h-auto mb-16">
+        <h2 class="font-[Nunito Sans] text-3xl font-bold">Pilih Gedung</h2>
+      </div>
+      <div class="flex flex-wrap">
+        <div class="flex items-center px-4 border border-[#FEE601] bg-[#FFFACC] w-full rounded-t-xl">
+          <input onclick="updateGedung()" id="bordered-radio-1" type="radio" value="Gedung Office Park 1" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
+          <label for="bordered-radio-1" class="w-full py-4 ms-2 font-[Nunito Sans] font-semibold text-base text-gray-900 dark:text-gray-300">Gedung Office Park 1</label>
+        </div>
+        <div class="flex items-center px-4 border border-[#FEE601] bg-[#FFFACC] w-full">
+          <input onclick="updateGedung()" id="bordered-radio-2" type="radio" value="Gedung Office Park 2" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
+          <label for="bordered-radio-2" class="w-full py-4 ms-2 font-[Nunito Sans] font-semibold text-base text-gray-900 dark:text-gray-300">Gedung Office Park 2</label>
+        </div>
+        <div class="flex items-center px-4 border border-[#FEE601] bg-[#FFFACC] w-full">
+          <input onclick="updateGedung()" id="bordered-radio-3" type="radio" value="Gedung Office Park 3" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
+          <label for="bordered-radio-3" class="w-full py-4 ms-2 font-[Nunito Sans] font-semibold text-base text-gray-900 dark:text-gray-300">Gedung Office Park 3</label>
+        </div>
+        <div class="flex items-center px-4 border border-[#FEE601] bg-[#FFFACC] w-full">
+          <input onclick="updateGedung()" id="bordered-radio-4" type="radio" value="Gedung Office Park 4" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
+          <label for="bordered-radio-4" class="w-full py-4 ms-2 font-[Nunito Sans] font-semibold text-base text-gray-900 dark:text-gray-300">Gedung Office Park 4</label>
+        </div>
+        <div class="flex items-center px-4 border border-[#FEE601] bg-[#FFFACC] w-full rounded-b-xl">
+          <input onclick="updateGedung()" id="bordered-radio-5" type="radio" value="Gedung Office Park 5" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
+          <label for="bordered-radio-5" class="w-full py-4 ms-2 font-[Nunito Sans] font-semibold text-base text-gray-900 dark:text-gray-300">Gedung Office Park 5</label>
+        </div>
+      </div>
+    </div>
+
+    <!--Gedung Pengambilan-->
+    <div id="ambilgd" class="bg-white w-auto h-auto p-12 rounded-2xl drop-shadow-2xl mb-16 hidden">
+      <div class="w-auto h-auto mb-16">
+        <h2 class="font-[Nunito Sans] text-3xl font-bold">Gedung Pengambilan</h2>
+      </div>
+      <div class="flex px-4 w-full">
+        <span class="material-symbols-outlined bg-[#FEE601] rounded-4xl">
+          location_on
+        </span>
+        <p class="font-[Nunito Sans] font-semibold text-base ml-4">Basement Gedung Green Office Park 9</p>
+      </div>
+    </div>
+
+    <!--Pesenanmu-->
+    <div class="bg-white w-auto h-auto p-12 rounded-2xl drop-shadow-2xl mb-16">
+        <div class="w-auto h-auto mb-16">
+          <h2 class="font-[Nunito Sans] text-3xl font-bold">Pesenanmu</h2>
+        </div>
+      <div id="itemCard" class="">
+        <div class="flex gap-4 items-start mb-8">
+
+        </div>
+      </div>
+          
+             <!-- <p class="font-[Nunito Sans] font-semibold text-base text-[#6d6d6d] mb-6">Nasi goreng dengan rempah pilihan.</p>  -->
+    
+      <hr class="solid bg-[#e8e8e8]">
+      <div class="flex justify-between items-center mt-8">
+        <p class="font-[Nunito Sans] font-semibold text-base text-[#6d6d6d]">Kamu udah yakin dengan pesenanmu? tambah lagi kalo laperrr bangettt</p>
+        <a href="/" class="bg-[#FFFACC] rounded-xl border border-[#FEE601] py-2.5 px-6 hover:border-2 hover:border-black hover:bg-[#FEE601] hover:drop-shadow-xl">
+          <p class="font-[Nunito Sans] font-semibold text-base">Pilih menu lagi</p>
+        </a>
+      </div>
+    </div>
+      
+    <!--Total Harga-->
+    <div class="bg-white w-auto h-auto p-12 rounded-2xl drop-shadow-2xl mb-16 hidden">
+      <div class="w-auto h-auto mb-16">
+        <h2 class="font-[Nunito Sans] text-3xl font-bold">Total Harga</h2>
+      </div>
+      <div class="flex mb-8">
+        <p class="font-[Nunito Sans] font-semibold text-base w-full text-[#6d6d6d]">Harga makanan</p>
+        <p id="hargaMakanan" class="font-[Nunito Sans] font-semibold text-base w-full text-right">Rp 0</p>
+      </div>
+      <div id="jasa" class="flex mb-8">
+        <p class="font-[Nunito Sans] font-semibold text-base w-full text-[#6d6d6d]">Jasa Pengirimian</p>
+        <p class="font-[Nunito Sans] font-semibold text-base w-full text-right">Rp 20.000</p>
+      </div>
+      <hr class="solid bg-[#e8e8e8]">
+      <div class="flex mt-8">
+        <p class="font-[Nunito Sans] font-semibold text-base w-full text-[#6d6d6d]">Total Harga</p>
+        <p id="totalHarga" class="font-[Nunito Sans] font-semibold text-base w-full text-right">Rp 50.000</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT SUMMARY -->
+  <div class="flex w-auto px-32 py-12 bg-white shadow-lg border-t">
+    <div class="w-full">
+      <p class="text-sm text-[#6d6d6d]">Jumlah item</p>
+      <p id="item-count" class="font-bold text-lg">0 item</p>
+    </div>
+    <div class="w-full">
+      <p class="text-sm text-[#6d6d6d]">Jenis Pembelian</p>
+      <p id="jenisPembelian" class="font-bold text-lg">Diantar Teman</p>
+    </div>
+    <div id="gdanter" class="w-full">
+      <p class="text-sm text-[#6d6d6d]">Diantar ke</p>
+      <p class="font-bold text-lg">-</p>
+    </div>
+    <div class="w-full">
+      <p class="text-sm text-[#6d6d6d]">Estimasi harga item</p>
+      <p id="total-price" class="font-bold text-lg">Rp 0</p>
+    </div>
+    <a href="/pembayaran/payment.html" id="checkout-btn" class="bg-black px-6 py-2 rounded hover:bg-yellow-600 w-full items-center flex justify-center">
+      <p class="text-white font-[Nunito Sans] font-semibold text-base text-center">Pilih pembayaran</p>
+    </a>
+  </div>
+  
+  
+  <!--Footer-->
+  <footer class="p-5">
+      <div class="grid md:grid-cols-2 md:gap-20">
+          <div class="p-5 grid">
+              <div>
+                  <img width="200" height="100" src="../assets/logo/logo_horizontal.png" alt="makantar">
+                  <p class="px-2 py-4 text-justify">makantar adalah platform web sederhana untuk titip makanan ke
+                      temen kantor yang sedang keluar membeli makan siang. Konsepnya fun, santai, dan cocok untuk
+                      komunitas kerja yang sibuk tapi tetap ingin makan siang bareng — walau kadang males turun, males
+                      nyebrang, atau lagi ngejar deadline.</p>
+              </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-1 px-5 py-20 gap-10">
+              <!-- footer nav (home, about, testi, dll) -->
+              <div class="grid md:grid-cols-2 md:gap-0 gap-10">
+                  <div>
+                      <span>Contact Us</span>
+                      <div class="mt-4">
+                          <p>+62 812-345-678</p>
+                          <p>halo@makantar.id</p>
+                      </div>
+                  </div>
+                  <div>
+                      <span>Location</span>
+                      <div class="mt-4">
+                          <p>15345, Tangerang</p>
+                          <p>South Tower, GOP 1</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="flex items-center px-6 md:px-2 py-4 justify-center">
+          <p>© 2025 makantar — Copyright All Rights reserved</p>
+      </div>
+  </footer>
+  <script src="index.js"></script>
+  <script src="../home.js"></script>
+  <script src="../detail-resto/resto.js"></script>
+</body>
+</html>

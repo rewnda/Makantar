@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AYON MALL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="manifest" href="../assets/site.webmanifest">
+    <link rel="stylesheet" href="../status/status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- NAVBAR -->
+    <nav class="navbar fixed w-full z-50 px-8 py-0 md:px-20 bg-[#FCFBF8] shadow-md">
+        <div class="container mx-auto flex justify-between items-center  ">
+            <!-- Logo -->
+            <div class="flex items-center w-full">
+                <a href="/" class="text-[#6d6d6d] font-bold flex items-center">
+                    <img src="../src/6.png" style="width: 180px; height:auto;" />
+                </a>
+            </div>
+
+            <div id='searchForm'
+                class="relative hidden md:flex justify-between w-full p-3 rounded-md border border-gray-500/75">
+                <input type="text" name="search" id="search" class="w-full focus:outline-0"
+                    placeholder="Ketik nama menu" autocomplete="off">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6 text-gray-500">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+                <ul id="searchDropdown"
+                    class="absolute top-full left-0 mt-2 bg-white border border-gray-300 w-full rounded-md shadow-md z-50 hidden">
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Tomyum Pedas</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Seafood</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Kangkung</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Bakso Urat</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Kari Jepang</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Udon Tempura</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Indomie Goreng Spesial</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Mie Tek-Tek</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Ayam Sambal Ijo</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Telur Dadar Crispy</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Goreng Kambing</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Rendang</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Kuning Komplit</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Ayam Teriyaki</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Omurice</li>
+                    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Nasi Liwet Sunda</li>
+                </ul>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center w-full justify-end gap-10">
+                <a href="status/index.html"
+                    class="text-[#262626] font-bold hover:text-yellow-400 transition hidden">Status</a>
+                <button class="text-[#262626] font-bold hover:text-yellow-400 transition">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <!-- <span
+                            class="absolute -top-2 -right-2 bg-yellow-500 text-xs text-[#6d6d6d] rounded-full h-5 w-5 flex items-center justify-center">3</span> -->
+                </button>
+                <div class="relative">
+                    <div>
+                        <!-- Sign In / Greeting Area -->
+                    </div>
+                    <div class=" text-black font-semibold">
+                        <span id="userGreeting" style="display:none">
+                            Hai, <span id="userNameDisplay"></span>
+                        </span>
+
+                        <!-- Tombol Sign In / Log Out -->
+                        <a id="signInBtn" href="/signin.html"
+                            class="bg-[#FEE601] text-[#262626] font-bold py-2 px-6 rounded-full transition hover:bg-yellow-400 cursor-pointer ml-4">
+                            Sign In
+                        </a>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button class="text-white text-2xl focus:outline-none" id="mobile-menu-button">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="relative ml-4">
+                            <button class="text-white">
+                                <i class="fas fa-shopping-cart text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAVBAR -->
+
+    <!-- pembungkus kosong, agar tidak ada konten dibwh nav (nav => fixed) -->
+    <div class="py-12"></div>
+    <!-- end pembungkus kosong, agar tidak ada konten dibwh nav (nav => fixed) -->
+
+    <!-- BACKHOME -->
+    <div class="max-w-6xl mx-auto px-4 pt-6 pb-4 text-sm text-gray-600 flex items-center space-x-2">
+        <a href="#" class="hover:underline">Homepage</a>
+        <span class="text-gray-400">›</span>
+        <a href="#" class="text-blue-500 hover:underline font-semibold">Resto A</a>
+    </div>
+    <!-- END BACKHOME -->
+
+    <!-- DETAIL RESTO -->
+    <section class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+            <!-- Gambar -->
+            <img src="https://blog.bankmega.com/wp-content/uploads/2022/11/Makanan-Khas-Tradisional.jpg"
+                class="w-3/5 md:w-1/4 rounded-lg object-cover shadow-md" alt="Foto Resto">
+
+            <!-- Informasi Detail Resto -->
+            <div class="flex-1 pl-6">
+                <h2 class="text-2xl font-bold mt-2 mb-6">AYON MALL</h2>
+
+                <!-- Lokasi -->
+                <div class="flex items-start gap-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5 text-black mt-0.5"
+                        viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-gray-700 text-sm">Basement Gedung Green Office Park 9</p>
+                </div>
+
+                <!-- Jam Buka -->
+                <div class="flex items-start gap-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                        class="w-5 h-5 mt-0.5">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-gray-700 text-sm">Senin – Jumat (09.00 – 20.00)</p>
+                </div>
+
+                <!-- Harga -->
+                <div class="flex items-start gap-3 py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                        class="w-5 h-5 mt-0.5">
+                        <path
+                            d="M10.75 10.818v2.614A3.13 3.13 0 0 0 11.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 0 0-1.138-.432ZM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 0 0-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152Z" />
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-6a.75.75 0 0 1 .75.75v.316a3.78 3.78 0 0 1 1.653.713c.426.33.744.74.925 1.2a.75.75 0 0 1-1.395.55 1.35 1.35 0 0 0-.447-.563 2.187 2.187 0 0 0-.736-.363V9.3c.698.093 1.383.32 1.959.696.787.514 1.29 1.27 1.29 2.13 0 .86-.504 1.616-1.29 2.13-.576.377-1.261.603-1.96.696v.299a.75.75 0 1 1-1.5 0v-.3c-.697-.092-1.382-.318-1.958-.695-.482-.315-.857-.717-1.078-1.188a.75.75 0 1 1 1.359-.636c.08.173.245.376.54.569.313.205.706.353 1.138.432v-2.748a3.782 3.782 0 0 1-1.653-.713C6.9 9.433 6.5 8.681 6.5 7.875c0-.805.4-1.558 1.097-2.096a3.78 3.78 0 0 1 1.653-.713V4.75A.75.75 0 0 1 10 4Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <p class="text-gray-700 text-sm">30.000 – 50.000 / Porsi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END DETAIL RESTO -->
+
+    <!-- MENU -->
+    <section class="max-w-6xl mx-auto mt-10 px-4 space-y-4 mb-20">
+        <!-- TIM MIE -->
+        <div class="bg-white rounded-lg shadow-md">
+            <button onclick="toggleMenu('mie')"
+                class="w-full flex justify-between items-center px-6 py-4 font-bold text-lg">
+                Tim Mie
+                <span class="text-xl">›</span>
+            </button>
+            <!-- CARD SATU -->
+            <div id="mie" class="hidden border-t px-6 py-4 space-y-4">
+                <!-- MENU CARD SATU -->
+                <div class="flex gap-4 items-start">
+                    <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?w=500&auto=format&fit=crop&q=
+                            60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWllfGVufDB8fDB8fHww"
+                        class="w-24 h-24 rounded-md object-cover shadow" alt="...">
+
+                    <div class="flex justify-between items-center flex-1">
+                        <!-- Deskripsi -->
+                        <div>
+                            <h4 class="font-semibold text-lg">Mie Kangkung</h4>
+                            <p class="text-sm text-gray-500">Mie Rebus dengan toping kangkung.</p>
+                            <p class="mt-2 font-bold text-black">Rp 15000</p>
+                        </div>
+
+                        <!-- Tombol Qty -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="removeItem('mie-kangkung')"
+                                class="bg-gray-600 text-white px-2 rounded">-</button>
+                            <span id="qty-mie-kangkung">0</span>
+                            <button
+                                onclick="addItem('mie-kangkung', 15000, 'Mie Kangkung', 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWllfGVufDB8fDB8fHww')"
+                                class="bg-yellow-600 text-white px-2 rounded">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MENU CARD SATU -->
+
+
+                <!-- MENU CARD DUA -->
+                <div class="flex gap-4 items-start">
+                    <img id="imageUrl"
+                        src="https://images.unsplash.com/photo-1707897748442-cc3a48d31300?w=500&auto=format&fit=crop&q=
+                            60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNoaWNrZW4lMjBub29kbGVzfGVufDB8fDB8fHww"
+                        class="w-24 h-24 rounded-md object-cover shadow" alt="...">
+
+                    <div class="flex justify-between items-center flex-1">
+                        <!-- Deskripsi -->
+                        <div>
+                            <h4 class="font-semibold text-lg">Mie Bakso Urat</h4>
+                            <p class="text-sm text-gray-500">Mie Ayam dengan tambahan bakso urat.</p>
+                            <p class="mt-2 font-bold text-black">Rp 20000</p>
+                        </div>
+
+                        <!-- Tombol Qty -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="removeItem('mie-bakso-urat')"
+                                class="bg-gray-600 text-white px-2 rounded">-</button>
+                            <span id="qty-mie-bakso-urat">0</span>
+                            <button onclick="addItem('mie-bakso-urat', 20000)"
+                                class="bg-yellow-600 text-white px-2 rounded">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MENU CARD DUA -->
+            </div>
+        </div>
+        <!-- END TIM MIE -->
+
+        <!-- TIM NASI -->
+        <div class="bg-white rounded-lg shadow-md">
+            <button onclick="toggleMenu('nasi')"
+                class="w-full flex justify-between items-center px-6 py-4 font-bold text-lg">
+                Tim Nasi
+                <span class="text-xl">›</span>
+            </button>
+
+            <!-- MENU CARD SATU -->
+            <div id="nasi" class="hidden border-t px-6 py-4 space-y-4">
+                <div class="flex gap-4 items-start">
+                    <img id="imageUrl" src="https://images.unsplash.com/photo-1569058242261-35d2acbc5675?w=500&auto=format&fit=crop&q=
+                            60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJpY2UlMjBjaGlja2VufGVufDB8fDB8fHww"
+                        class="w-24 h-24 rounded-md object-cover shadow" alt="...">
+
+                    <div class="flex justify-between items-center flex-1">
+                        <!-- Deskripsi -->
+                        <div>
+                            <h4 class="font-semibold text-lg">Nasi Goreng Kambing</h4>
+                            <p class="text-sm text-gray-500">Nasi goreng dengan tambahan daging kambing lunak.</p>
+                            <p class="mt-2 font-bold text-black">Rp 33000</p>
+                        </div>
+
+                        <!-- Tombol Qty -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="removeItem('nasi-goreng-kambing')"
+                                class="bg-gray-600 text-white px-2 rounded">-</button>
+                            <span id="qty-nasi-goreng-kambing">0</span>
+                            <button onclick="addItem('nasi-goreng-kambing', 33000)"
+                                class="bg-yellow-600 text-white px-2 rounded">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CARD SATU -->
+
+                <!-- MENU CARD DUA -->
+                <div class="flex gap-4 items-start">
+                    <img id="imageUrl" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&auto=format&fit=crop&q=
+                            60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJpZWQlMjByaWNlfGVufDB8fDB8fHww"
+                        class="w-24 h-24 rounded-md object-cover shadow" alt="...">
+
+                    <div class="flex justify-between items-center flex-1">
+                        <!-- Deskripsi -->
+                        <div>
+                            <h4 class="font-semibold text-lg">Nasi Rendang</h4>
+                            <p class="text-sm text-gray-500">Nasi hangat dengan lauk rendang khas padang.</p>
+                            <p class="mt-2 font-bold text-black">Rp 19000</p>
+                        </div>
+
+                        <!-- Tombol Qty -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="removeItem('nasi-rendang')"
+                                class="bg-gray-600 text-white px-2 rounded">-</button>
+                            <span id="qty-nasi-rendang">0</span>
+                            <button onclick="addItem('nasi-rendang', 19000)"
+                                class="bg-yellow-600 text-white px-2 rounded">+</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CARD DUA -->
+            </div>
+        </div>
+        <!-- END TIM NASI -->
+    </section>
+    <!-- END MENU -->
+
+    <!-- CHECKOUT SUMMARY -->
+    <div class="md:flex-row left-0 right-0 bg-white shadow-lg items-center border-t py-4 ">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <div class="w-full">
+                <p class="text-sm text-gray-500">Jumlah item</p>
+                <p id="item-count" class="font-bold text-lg">0 item</p>
+            </div>
+            <div class="w-full">
+                <p class="text-sm text-gray-500">Estimasi harga item</p>
+                <p id="total-price" class="font-bold text-lg">Rp 0</p>
+            </div>
+            <a href="/checkout/index.html" id="checkout-btn"
+                class="bg-black px-6 py-2 rounded hover:bg-[#FEE601] w-full items-center flex justify-center">
+                <p class="text-white font-[Nunito Sans] font-semibold text-base text-center">Bayar Sekarang</p>
+            </a>
+        </div>
+    </div>
+    <!-- END CHECKOUT SUMMARY -->
+
+    <!-- FOOTER -->
+    <footer class="p-5">
+        <div class="grid md:grid-cols-2 md:gap-20">
+            <div class="p-5 grid">
+                <div>
+                    <img width="200" height="100" src="../assets/logo/logo_horizontal.png" alt="makantar">
+                    <p class="px-2 py-4 text-justify">makantar adalah platform web sederhana untuk titip makanan ke
+                        temen kantor yang sedang keluar membeli makan siang. Konsepnya fun, santai, dan cocok untuk
+                        komunitas kerja yang sibuk tapi tetap ingin makan siang bareng — walau kadang males turun, males
+                        nyebrang, atau lagi ngejar deadline.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-1 px-5 py-20 gap-10">
+                <!-- footer nav (home, about, testi, dll) -->
+                <div class="grid md:grid-cols-2 md:gap-0 gap-10">
+                    <div>
+                        <span>Contact Us</span>
+                        <div class="mt-4">
+                            <p>+62 812-345-678</p>
+                            <p>halo@makantar.id</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span>Location</span>
+                        <div class="mt-4">
+                            <p>15345, Tangerang</p>
+                            <p>South Tower, GOP 1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center px-6 md:px-2 py-4 justify-center">
+            <p>© 2025 makantar — Copyright All Rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- END FOOTER -->
+
+    <!-- Menghubungkan JS Eksternal -->
+    <script src="resto.js"></script>
+</body>
+
+</html>

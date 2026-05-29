@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+    font-family: "Nunito Sans";
+}
+
+body {
+    background-color: #FCFBF8;
+}
+
+footer {
+    background-color: black;
+}
+
+footer p {
+    color: #fff;
+}
+
+footer span {
+    color: #FEE601;
+    font-size: 20px;
+}
+
+.tracker::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #106ef2;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.step {
+    position: relative;
+    border-radius: 100%;
+    border: 1px solid #8e8e8e;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+}
+
+.step.active {
+    border: 2px solid #106ef2;
+}
+
+.step.active::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #106ef2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.step.done {
+    background-color: #106ef2;
+    position: relative;
+}
+
+.step.done::after {
+    content: "✓";
+    color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.step > span {
+    position: absolute;
+    top: 100%;
+    transform: translate(-40%, 50%);
+    width: max-content;
+}
+
+@media only screen and (max-width: 768px) {
+    .step > span {
+        font-size: 8px;
+        position: absolute;
+        top: 100%;
+        left: 40%;
+        transform: translate(-40%, 50%);
+        width: max-content;
+    }
+}
